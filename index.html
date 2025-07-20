@@ -1,16 +1,67 @@
----
-layout: page
-title: Amithash Kankanallu
-subtitle: Virtual space for my picture log and book notes
-galleries:
-  - title: Gallery
-    image: /img/gallery.png
-    url: gallery
-  - title: Book Notes
-    image: /img/feather.png
-    url: books
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Amithash Kankanallu</title>
 
-{% include image-gallery-index.html %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Minimal one‑page personal site with mesh‑gradient, grain and photo link.">
+
+  <!-- Fonts identical to ingahampton.com -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <!--  Instrument Serif  -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top"><!-- gives us a #top anchor -->
+
+  <!-- Moving mesh‑gradient layers (sit only behind the first half) -->
+  <div class="gradient layer‑1" aria-hidden="true"></div>
+  <div class="gradient layer‑2" aria-hidden="true"></div>
+  <div class="gradient layer‑3" aria-hidden="true"></div>
+
+  <!-- Film‑grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ── FIRST HALF ─────────────────────────────────────────── -->
+  <header class="top‑bar">
+    <span class="logo"
+          aria-label="amithash">   <!-- keeps the whole name for screen‑readers -->
+      <span class="straight">amit</span><span class="italic">hash</span>
+    </span>
+  </header>
+
+
+  <main class="hero">
+    <p class="bio">
+      Hi, I’m Amithash Kankanallu. Also known as @kjamithash. I have swept space, given cars new eyes, taught wearables to count strokes, and now, make AI work for the financial world.
+    </p>
+  </main>
+
+  <footer class="contact">
+    <span class="label">contact</span>
+    <a href="mailto:you@example.com" class="email">amithash@amithash.com →</a>
+  </footer>
+
+  <!-- ↓ arrow that jumps to the second half -->
+  <a href="#social" class="scroll‑cue down" aria-label="Scroll to next section">↓</a>
+
+  <!-- ── SECOND HALF ────────────────────────────────────────── -->
+  <section class="social" id="social">
+    <a href="https://linkedin.com/in/amithash"
+       target="_blank" rel="noopener"
+       class="social‑link">
+      <!-- Replace photo.jpg with your own image in the same folder -->
+      <img src="img/profilePicture.jpg" alt="Your Name" class="social‑photo">
+      <span class="overlay">@amithash</span>
+    </a>
+
+    <!-- ↑ arrow that jumps back to the top -->
+    <a href="#top" class="scroll‑cue up" aria-label="Back to top">↑</a>
+  </section>
+
+</body>
+</html>
