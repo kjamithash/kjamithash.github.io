@@ -1,43 +1,41 @@
-/* ========== RESET ========================================================= */
+/* ========== RESET ======================================================= */
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; }
-
-/* Smooth anchor scrolling */
+body, p { margin: 0; }
 html { scroll-behavior: smooth; }
 
-/* ========== TOKENS ======================================================== */
+/* ========== TOKENS ====================================================== */
 :root {
   --font-display: "Fraunces", serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-serif: "Instrument Serif", serif; 
-  --max-width: 63%;
+  --font-body:    "Inter", system-ui, sans-serif;
+  --font-serif:   "Instrument Serif", serif;
+  --max-width:    63%;
 
-  --black: #000;
-  --white: #fff;
+  --black:  #000;
+  --white:  #fff;
   --border: rgba(0, 0, 0, .6);
+
+  --corner-radius: 80px;
+
+  --bar-pad-block: 1.25rem;
+  --bar-pad-inline: 2rem;
+  --bar-font-size: 1.75rem;
 }
 
-/* ========== GLOBAL ======================================================== */
+/* ========== GLOBAL ====================================================== */
 body {
   font-family: var(--font-body);
   color: var(--black);
   min-height: 100dvh;
-  position: relative;
 
-  border-bottom-left-radius: 80px;
-  border-bottom-right-radius: 80px;
+  border-bottom-left-radius: var(--corner-radius);
+  border-bottom-right-radius: var(--corner-radius);
 
-  padding-bottom: 80px;   /* ⬅︎ same value as the corner radius */
-
-  /* only hide sideways overflow, allow vertical scroll */
-  overflow-x: hidden;     /* 👈 changed */
-  /* overflow-y defaults to visible/auto → page scrolls */
+  overflow-x: hidden;          /* allow vertical scrolling */
 }
 
-
-/* ========== MESH GRADIENT (FIRST HALF ONLY) =============================== */
+/* ========== MESH GRADIENT ============================================== */
 .gradient {
-  position: fixed;           /* sticks behind first half */
+  position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: -3;
@@ -46,14 +44,14 @@ body {
 }
 @keyframes shift {
   0%   { transform: translate(-10%, -5%) scale(1); }
-  50%  { transform: translate( 10%,  5%) scale(1.05);}
+  50%  { transform: translate( 10%,  5%) scale(1.05); }
   100% { transform: translate(-10%, -5%) scale(1); }
 }
 .layer‑1 { background: radial-gradient(circle at 25% 40%, #ff6b6b 0%, transparent 60%); }
 .layer‑2 { background: radial-gradient(circle at 70% 30%, #f6d365 0%, transparent 60%); animation-direction: reverse; }
 .layer‑3 { background: radial-gradient(circle at 60% 75%, #845ef7 0%, transparent 65%); }
 
-/* ========== FILM‑GRAIN ==================================================== */
+/* Film‑grain */
 .grain {
   position: fixed;
   inset: -50%;
@@ -66,79 +64,66 @@ body {
 }
 @keyframes grain { to { transform: translate(20%,15%); } }
 
-/* ========== TOP BAR ======================================================= */
-.top‑bar {
-  position: relative;
-  padding: 1.25rem 2rem;
-  font-family: var(--font-display);
-  font-size: 1.75rem;
+/* ========== FLEX WRAPPER =============================================== */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;          /* exactly one viewport */
 }
-.top‑bar::after {
+.hero { flex: 1; }            /* fills space between bars */
+
+/* ========== TOP & CONTACT BARS (shared) ================================ */
+.top‑bar,
+.contact {
+  position: relative;
+  padding: var(--bar-pad-block) var(--bar-pad-inline);
+  font-size: var(--bar-font-size);
+  line-height: 1;
+}
+
+/* identical hairlines */
+.top‑bar::after,
+.contact::before,
+.contact::after {
   content: "";
-  position: absolute; inset-inline: 0; bottom: 0; height: 1px;
+  position: absolute;
+  left: 0; right: 0; height: 1px;
   background: var(--border);
 }
-/* Logo container still uses Instrument Serif */
-.logo {
-  font-family: var(--font-serif);
-  font-size: 3.3rem;
-  letter-spacing: -.5px;   /* optional optical tweak */
-}
+.top‑bar::after  { bottom: 0; }
+.contact::before { top: 0; }
+.contact::after  { bottom: 0; }
 
-/* Straight part – inherit weight, no italics */
+/* logo split style */
+.logo { font-family: var(--font-serif); font-size: 3.3rem; letter-spacing: -.5px; }
 .logo .straight { font-style: normal; }
+.logo .italic   { font-style: italic; }
 
-/* Italic part – flip to italic */
-.logo .italic  { font-style: italic; }
-
-
-/* ========== HERO SECTION ================================================== */
+/* ========== HERO SECTION =============================================== */
 .hero {
-  display: grid; place-content: center;
-  min-height: calc(100dvh - 220px);   /* subtract contact bar */
+  display: grid;
+  place-content: center;
   padding: 2rem 1.5rem;
   text-align: right;
-  max-width: var(--max-width); margin-left: auto;
+  max-width: var(--max-width);
+  margin-left: auto;
 }
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw + 1rem, 4.25rem);
-  line-height: 1.1; margin: 0 0 .75rem;
-  opacity: 0; transform: translateY(20px);
-  animation: fadeUp 700ms ease-out 250ms forwards;
-}
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-/* 2.  Intro paragraph ( .bio ) now uses Instrument Serif and is larger  */
 .bio {
-  font-family: var(--font-serif);   /* NEW — switches from Inter */
-  font-size: 3.3rem;              /* was 1.25rem */
+  font-family: var(--font-serif);
+  font-size: 3.3rem;
   line-height: 1.45;
   color: rgba(0,0,0,.75);
-  max-width: 180ch;
+  max-width: 60ch;
   margin-left: auto;
   margin-right: 2rem;
 }
 
-/* ========== CONTACT BAR =================================================== */
-.contact {
-  position: relative;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 1.5rem;
-  padding: 1.25rem 2rem;
-  font-size: 1rem;
-}
-.contact::before,
-.contact::after {
-  content: ""; position: absolute; inset-inline: 0; height: 1px;
-  background: var(--border);
-}
-.contact::before { top: 0; } .contact::after { bottom: 0; }
+/* ========== CONTACT BAR DETAILS ======================================== */
 .label { text-transform: uppercase; letter-spacing: .05em; }
 .email { color: inherit; text-decoration: none; transition: opacity .2s; }
 .email:hover { opacity: .65; }
 
-/* ========== ARROW CUES ==================================================== */
+/* ========== ARROW CUES ================================================== */
 .scroll‑cue {
   position: fixed;
   left: 1.25rem;
@@ -146,16 +131,18 @@ body {
   user-select: none;
   text-decoration: none;
 }
-.down { bottom: 1.25rem; color: var(--black); animation: bounceDn 1.4s ease-in-out infinite alternate; }
-.up   { bottom: 1.25rem; color: var(--white); animation: bounceUp 1.4s ease-in-out infinite alternate; }
-@keyframes bounceDn { to { transform: translateY(6px); } }
+.down { bottom: 1.25rem; color: var(--black);  animation: bounceDn 1.4s ease-in-out infinite alternate; }
+.up   { bottom: 1.25rem; color: var(--white);  animation: bounceUp 1.4s ease-in-out infinite alternate; }
+
+@keyframes bounceDn { to { transform: translateY( 6px); } }
 @keyframes bounceUp { to { transform: translateY(-6px); } }
 
-/* ========== SECOND HALF (PHOTO / LINK) =================================== */
+/* ========== BLACK PANEL ================================================ */
 .social {
   background: var(--black);
-  display: grid; place-content: center;
-  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
   position: relative;
 }
 .social‑link { position: relative; display: inline-block; }
@@ -171,7 +158,7 @@ body {
   pointer-events: none;
 }
 
-/* ========== ACCESSIBILITY ================================================= */
+/* ========== ACCESSIBILITY ============================================== */
 @media (prefers-reduced-motion: reduce) {
   .gradient, .grain, .scroll‑cue { animation: none !important; }
 }

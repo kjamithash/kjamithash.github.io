@@ -7,59 +7,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Minimal one‑page personal site with mesh‑gradient, grain and photo link.">
 
-  <!-- Fonts identical to ingahampton.com -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <!--  Instrument Serif  -->
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500&family=Instrument+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
-<body id="top"><!-- gives us a #top anchor -->
+<body id="top">
 
-  <!-- Moving mesh‑gradient layers (sit only behind the first half) -->
+  <!-- animated mesh‑gradient layers -->
   <div class="gradient layer‑1" aria-hidden="true"></div>
   <div class="gradient layer‑2" aria-hidden="true"></div>
   <div class="gradient layer‑3" aria-hidden="true"></div>
+  <div class="grain"               aria-hidden="true"></div>
 
-  <!-- Film‑grain overlay -->
-  <div class="grain" aria-hidden="true"></div>
+  <!-- ── COLOURED PANEL (fills one viewport) ── -->
+  <div class="page">
 
-  <!-- ── FIRST HALF ─────────────────────────────────────────── -->
-  <header class="top‑bar">
-    <span class="logo"
-          aria-label="amithash">   <!-- keeps the whole name for screen‑readers -->
-      <span class="straight">amit</span><span class="italic">hash</span>
-    </span>
-  </header>
+    <header class="top‑bar">
+      <span class="logo" aria-label="amithash">
+        <span class="straight">amit</span><span class="italic">hash</span>
+      </span>
+    </header>
 
+    <main class="hero">
+      <p class="bio">
+        Hi, I’m Amithash Kankanallu. Also known as @kjamithash. I have swept space,
+        given cars new eyes, taught wearables to count strokes, and now, make AI work
+        for the financial world.
+      </p>
+    </main>
 
-  <main class="hero">
-    <p class="bio">
-      Hi, I’m Amithash Kankanallu. Also known as @kjamithash. I have swept space, given cars new eyes, taught wearables to count strokes, and now, make AI work for the financial world.
-    </p>
-  </main>
+    <footer class="contact">
+      <span class="label">contact</span>
+      <a href="mailto:amithash@amithash.com" class="email">amithash@amithash.com →</a>
+    </footer>
+  </div>
 
-  <footer class="contact">
-    <span class="label">contact</span>
-    <a href="mailto:you@example.com" class="email">amithash@amithash.com →</a>
-  </footer>
-
-  <!-- ↓ arrow that jumps to the second half -->
+  <!-- ↓ arrow jumps to the black section -->
   <a href="#social" class="scroll‑cue down" aria-label="Scroll to next section">↓</a>
 
-  <!-- ── SECOND HALF ────────────────────────────────────────── -->
+  <!-- ── BLACK PANEL ── -->
   <section class="social" id="social">
-    <a href="https://linkedin.com/in/amithash"
-       target="_blank" rel="noopener"
-       class="social‑link">
-      <!-- Replace photo.jpg with your own image in the same folder -->
-      <img src="img/profilePicture.jpg" alt="Your Name" class="social‑photo">
+    <a href="https://linkedin.com/in/amithash" target="_blank" rel="noopener" class="social‑link">
+      <img src="img/profilePicture.jpg" alt="Amithash Kankanallu" class="social‑photo">
       <span class="overlay">@amithash</span>
     </a>
 
-    <!-- ↑ arrow that jumps back to the top -->
+    <!-- ↑ arrow back to top -->
     <a href="#top" class="scroll‑cue up" aria-label="Back to top">↑</a>
   </section>
 
