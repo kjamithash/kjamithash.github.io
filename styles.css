@@ -119,7 +119,7 @@ body {
 }
 
 /* ========== CONTACT BAR DETAILS ======================================== */
-.label { text-transform: uppercase; letter-spacing: .05em; }
+.label { text-transform: none; letter-spacing: 0 }
 .email { color: inherit; text-decoration: none; transition: opacity .2s; }
 .email:hover { opacity: .65; }
 
@@ -162,3 +162,45 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .gradient, .grain, .scroll‑cue { animation: none !important; }
 }
+
+/* ─────────────────── ALIGN CONTACT + BIO & UBUNTU LIGHT ────────────────── */
+
+/* shared gutter: where bio + e‑mail begin (tweak if needed) */
+:root { --content-left: 14rem; }
+
+/* BIO ─ left‑aligned, same gutter as reference site */
+.hero {
+  align-items: flex-start;         /* over‑rides previous center alignment   */
+  text-align: left;
+}
+.bio {
+  margin: 0;                       /* clear old auto/right margins           */
+  margin-left: var(--content-left);
+  margin-right: var(--bar-pad-inline);
+}
+
+/* CONTACT BAR ─ grid lets us line things up precisely */
+.contact {
+  display: grid;                   /* replaces earlier flex layout           */
+  grid-template-columns: auto auto;/* label | e‑mail                         */
+  column-gap: calc(var(--content-left) - var(--bar-pad-inline));
+  align-items: center;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;     /* Thin */
+  padding-left: var(--bar-pad-inline);
+  padding-right: var(--bar-pad-inline);
+}
+
+/* label hugs logo gutter automatically (no extra margin needed) */
+.label { margin: 0; }
+
+/* e‑mail now sits flush with bio’s left edge */
+.email {
+  margin: 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;     /* Thin */
+}
+
+/* keep arrow away from new layout */
+.scroll‑cue.down { left: calc(var(--bar-pad-inline) / 2); }
