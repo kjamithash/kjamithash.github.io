@@ -175,3 +175,27 @@ body{
 @media(prefers-reduced-motion:reduce){
   .gradient,.grain,.scroll‑cue{animation:none!important;}
 }
+
+/* ── mobile tune-up (≤ 600 px) ─────────────────────────────── */
+@media (max-width: 600px){
+
+  /* 1 · narrower left gutter for bio + e-mail  */
+  :root{ --content-left: 2rem; }
+
+  /* 2 · hero stretches full width, stays centred vertically  */
+  .hero{
+    max-width: 100%;
+    margin-left: 0;
+    padding-inline: var(--pad-inline);
+  }
+
+  /* 3 · bio keeps some side breathing room  */
+  .bio{
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 45ch;
+  }
+
+  /* 4 · contact bar already stacks via earlier 500 px query,
+        so nothing extra needed here */
+}
