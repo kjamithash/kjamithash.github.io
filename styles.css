@@ -204,3 +204,24 @@ body {
 
 /* keep arrow away from new layout */
 .scroll‑cue.down { left: calc(var(--bar-pad-inline) / 2); }
+
+/* bottom‑right “twitter  linkedin”  */
+.social-links{
+  position: absolute;                 /* pin inside .social panel   */
+  right: var(--bar-pad-inline);
+  bottom: var(--bar-pad-block);
+
+  display: flex;
+  gap: 1.6rem;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;                   /* change to 100 if you load Thin */
+  font-size: 1rem;
+}
+.social-links a{
+  color: var(--white);
+  text-decoration: none;
+  text-transform: lowercase;
+  transition: opacity .2s;
+}
+.social-links a:hover{ opacity:.7; }
