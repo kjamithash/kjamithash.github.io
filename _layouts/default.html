@@ -1,9 +1,26 @@
----
-layout: base
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title | default: site.title }}</title>
 
-<div class="intro-header"></div>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.description | default: site.description }}">
 
-<div role="main" class="container">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500&family=Instrument+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@100;400&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  <link rel="icon" type="image/x-icon" href="/img/amithash_logo.ico">
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "2de2767953b04c35bc8bd4639c3c0f42"}'></script>
+</head>
+
+<body id="top">
   {{ content }}
-</div>
+</body>
+</html>
